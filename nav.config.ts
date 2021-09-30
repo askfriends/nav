@@ -1,62 +1,61 @@
 import { IConfig } from './src/types'
 
 const c: IConfig = {
-  // [必填], 请填写您的仓库地址
-  gitRepoUrl: 'https://github.com/xjh22222228/nav',
+  // [Mondatory], Please replace following Github url with your own Github address which you forked in.
+  gitRepoUrl: 'https://github.com/askfriends/nav',
 
-  // 部署分支
+  // Deployment branch name
   branch: 'main',
 
-  // 页面Loading: loading1 | loading2 | loading3 | random
-  // 如果您有好看的加载Loading请联系我们！
-  loading: 'random', // 随机加载
-
-  // 路由是否Hash模式, 如果是部署在github pages 务必设为 true
+  // Page Loading: loading1 | loading2 | loading3 | random
+  // If you have a good-looking Loading, please contact us!
+  loading: 'random', // Random loading
+  // Whether the route is in Hash mode, if it is deployed on github pages, it must be set to true
   hashMode: true,
 
-  // 是否显示右上角的 Github 图标
+  // Whether to show the Github icon in the upper right corner
   showGithub: true,
 
-  // 您的网站地址，有利于SEO
+  // Your website address is good for SEO
   homeUrl: 'https://nav3.cn',
 
-  // 网站标题
-  title: '发现导航 - 精选实用导航网站',
+  // Site title
+  title: 'Discovery Navigation-Featured and useful navigation sites',
 
-  // 网站描述
-  description: '发现导航 - 精选实用导航网站',
+  // Site description
+  description: 'Discovery Navigation-Featured and useful navigation sites',
 
-  // 网站关键字
-  keywords: '导航,前端资源,社区站点,设计师,实用工具,学习资源,运营,网络安全,node.js',
+  // Site keywords
+  keywords: 'Navigation, front-end resources, community sites, designers, practical tools, learning resources, operations, network security, node.js',
 
-  // 默认主题: Light | Sim | Side | App | Shortcut
+  // Default theme: Light | Sim | Side | App | Shortcut
   theme: 'Light',
 
-  // 网站底部内容, 版权信息、备案号, 可以是 HTML
+  // The content at the bottom of the website, copyright information, record number, can be HTML
   footerContent: `
-    <div style="font-weight: bold;">共收录\${total}个网站</div>
+    <div style="font-weight: bold;">Totally included\${total}Sites</div>
     <div>Copyright © 2018-2021 nav3.cn, All Rights Reserved</div>
   `,
 
-  // 阿里巴巴矢量图库 https://www.iconfont.cn/
-  // 用在 Side 主题一级、二级菜单图标展示
+  // Alibaba Vector Gallery https://www.iconfont.cn/
+  // Used in side theme level 1 and level 2 menu icon display
   iconfontUrl: '//at.alicdn.com/t/font_2522843_wl70o31sy6.js',
 
-  // 百度统计地址
+  // Baidu Statistics Address
   // https://tongji.baidu.com/web/welcome/login
   baiduStatisticsUrl: 'https://hm.baidu.com/hm.js?4582be7af7e7c95ef75351e07c6c32ba',
 
-  // CNZZ 统计地址
+  // CNZZ Statistics address
   // https://www.cnzz.com/o_index.php
   cnzzStatisticsUrl: '',
 
-  // Sim 主题配置
+  // Sim Theme configuration
   simThemeConfig: {
-    // 海报图
+    // Poster illustration
     posterImageUrls: [
       'https://raw.sevencdn.com/xjh22222228/nav/image/sim-wallpaper.jpg'
     ],
-    description: '这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活'
+    description: 'Up to <b>${total}</b> A quality website to help you work, study and live'
   }
 }
 
