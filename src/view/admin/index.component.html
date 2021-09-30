@@ -4,7 +4,7 @@
     style="margin-bottom: 15px;"
     (click)="goBack()"
   >
-    返回主页
+    return to home page
   </button>
   <button
     nz-button
@@ -12,25 +12,25 @@
     (click)="handleSync()"
     [nzLoading]="syncLoading"
   >
-    同步到远端
+    Sync to remote
   </button>
   <button
     nz-button
     style="margin-left: 15px;"
     (click)="handleReset()"
   >
-    重置初始数据
+    Reset initial data
   </button>
 
   <div class="content">
-    <p><b>1、所有数据设置完毕后点击 “同步到远端”，拖拽表格进行排序</b></p>
-    <p><b>2、网站分类需手动维护, <a [href]="gitRepoUrl + '/edit/main/data/tag.json'" target="_blank">点击编辑</a></b></p>
+    <p><b>1、After all the data is set, click "Sync to remote", drag the table to sort</b></p>
+    <p><b>2、Website classification needs to be maintained manually, <a [href]="gitRepoUrl + '/edit/main/data/tag.json'" target="_blank">Click to edit</a></b></p>
     
     <div class="logo-wrapper">
       <label id="file">
         <img [src]="LOGO_CDN" alt="" class="logo">
         <p style="white-space: nowrap; margin-top: 5px;">
-          {{ uploading ? '上传中...' : '更换LOGO, 仅支持 PNG' }}
+          {{ uploading ? 'uploading...' : 'Change LOGO, only supports PNG' }}
         </p>
         <input
           type="file"
@@ -44,7 +44,7 @@
     <div class="book-wrapper">
       <label id="file">
         <img src="assets/img/bookmark.svg" alt="" class="logo">
-        <p style="white-space: nowrap; margin-top: 5px;">从Chrome书签导入</p>
+        <p style="white-space: nowrap; margin-top: 5px;">Import from Chrome bookmarks</p>
         <input
           type="file"
           name="file"
@@ -56,16 +56,16 @@
   </div>
 
   <nz-tabset *ngIf="isLogin" [nzSelectedIndex]="tabActive" (nzSelectedIndexChange)="onTabChange($event)">
-    <nz-tab nzTitle="管理一级分类">
-      <button nz-button nzType="primary" (click)="toggleCreateModal()">添加分类</button>
+    <nz-tab nzTitle="Management level classification">
+      <button nz-button nzType="primary" (click)="toggleCreateModal()">add category</button>
       <nz-table #basicTable [nzData]="websiteList" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
-            <th>图标</th>
-            <th>分类名称</th>
-            <th>仅自己可见</th>
-            <th>创建时间</th>
-            <th>操作</th>
+            <th>icon</th>
+            <th>Category Name</th>
+            <th>Only visible to you</th>
+            <th>Creation time</th>
+            <th>operate</th>
           </tr>
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropOne($event)">
@@ -83,14 +83,14 @@
             </td>
             <td>{{ data.createdAt }}</td>
             <td>
-              <a (click)="handleEditBtn(data, idx)">编辑</a>
+              <a (click)="handleEditBtn(data, idx)">edit</a>
               <a
                 nz-popconfirm
-                nzPopconfirmTitle="这会删除分类下的所有数据，您确定要删除吗?"
+                nzPopconfirmTitle="This will delete all data under the category, are you sure you want to delete it?"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelOne(idx)"
               >
-                <a nz-button nzType="link" nzDanger>删除</a>
+                <a nz-button nzType="link" nzDanger>delete</a>
               </a>
             </td>
           </tr>
@@ -98,11 +98,11 @@
       </nz-table>
     </nz-tab>
 
-    <nz-tab nzTitle="管理二级分类">
+    <nz-tab nzTitle="Manage secondary classification">
       <nz-select
         [ngModel]="oneSelect"
         nzShowSearch
-        nzPlaceHolder="请选择一级分类"
+        nzPlaceHolder="Please select a category"
         (ngModelChange)="hanldeOneSelect($event)"
         style="width: 260px;"
       >
@@ -120,14 +120,14 @@
         (click)="toggleCreateModal()"
         style="margin-left: 20px;"
       >
-        添加分类
+        add category
       </button>
 
       <nz-table #basicTable [nzData]="twoTableData" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
-            <th>图标</th>
-            <th>分类名称</th>
+            <th>icon</th>
+            <th>Category Name</th>
             <th>仅自己可见</th>
             <th>创建时间</th>
             <th>操作</th>
