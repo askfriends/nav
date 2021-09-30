@@ -45,22 +45,22 @@
 `Discovery Navigation The idea is to make it simple and convenient without relying on back-end services, without complicated configuration and database configuration concepts, so it can be used out of the box.
 
 
-🍰 Built-in 800+utility sites.
-🍰 Support SEO.
-🍰 It is completely static and provides automatic deployment functions.
-🍰 The trigeminal tree has a clear structure and clear classification.
-🍰 Support one website to associate multiple URLs
-🍰 The coexistence of beauty and simplicity is no longer the era of killing Matt.
-🍰 Completely open source, easy to customize.
-🍰 Support multiple browsing modes and innovation.
-🍰 Support footprint memory.
-🍰 Support mobile browsing.
-🍰 Support search query.
-🍰 Support custom engine search.
-🍰 A variety of theme switching.
-🍰 Support dark mode.
-🍰 Support background management, no need to deploy.
-🍰 Support import from Chrome bookmarks
+- 🍰 Built-in 800+utility sites.
+- 🍰 Support SEO.
+- 🍰 It is completely static and provides automatic deployment functions.
+- 🍰 The trigeminal tree has a clear structure and clear classification.
+- 🍰 Support one website to associate multiple URLs
+- 🍰 The coexistence of beauty and simplicity is no longer the era of killing Matt.
+- 🍰 Completely open source, easy to customize.
+- 🍰 Support multiple browsing modes and innovation.
+- 🍰 Support footprint memory.
+- 🍰 Support mobile browsing.
+- 🍰 Support search query.
+- 🍰 Support custom engine search.
+- 🍰 A variety of theme switching.
+- 🍰 Support dark mode.
+- 🍰 Support background management, no need to deploy.
+- 🍰 Support import from Chrome bookmarks
 
 
 ## Deploy
@@ -71,13 +71,13 @@ Its as easy as counting numbers "3 2 1" that simple!
 
 2、[https://github.com/settings/tokens](https://github.com/settings/tokens) apply for a token, check the corresponding permissions, if you don’t understand, select all, copy and save the token.
 
-3、https://github.com/用户名/nav/settings/secrets/actions/new  Create a new application token, name fill in TOKEN (All are uppercase).
+3、https://github.com/askfriends/nav/settings/secrets/actions/new  Create a new application token, name fill in TOKEN (All are uppercase).
 
-4、Go to https://github.com/用户名/nav/actions click "Green Button"
+4、Go to https://github.com/askfriends/nav/actions click "Green Button"
 
 5、Be sure to modify the project configuration file [nav.config.ts](nav.config.ts)
 
-6、After 5 minutes, open https://用户名.github.io/nav , you will see a very powerful navigation website.
+6、After 5 minutes, open https://askfriends.github.io/nav , you will see a very powerful navigation website.
 
 ### Method 2 (Free Vercel)
 The steps are the same as the first method, except that the fourth step is not needed.
