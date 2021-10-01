@@ -128,9 +128,9 @@
           <tr>
             <th>icon</th>
             <th>Category Name</th>
-            <th>仅自己可见</th>
-            <th>创建时间</th>
-            <th>操作</th>
+            <th>Only visible to you</th>
+            <th>Creation time</th>
+            <th>operate</th>
           </tr>
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropTwo($event)">
@@ -148,14 +148,14 @@
             </td>
             <td>{{ data.createdAt }}</td>
             <td>
-              <a (click)="handleEditBtn(data, idx)">编辑</a>
+              <a (click)="handleEditBtn(data, idx)">edit</a>
               <a
                 nz-popconfirm
-                nzPopconfirmTitle="这会删除分类下的所有数据，您确定要删除吗?"
+                nzPopconfirmTitle="This will delete all data under the category, are you sure you want to delete it?"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelTwo(idx)"
               >
-                <a nz-button nzType="link" nzDanger>删除</a>
+                <a nz-button nzType="link" nzDanger>delete</a>
               </a>
             </td>
           </tr>
@@ -163,11 +163,11 @@
       </nz-table>
     </nz-tab>
 
-    <nz-tab nzTitle="管理三级分类">
+    <nz-tab nzTitle="Management three-level classification">
       <nz-select
         [ngModel]="oneSelect"
         nzShowSearch
-        nzPlaceHolder="请选择一级分类"
+        nzPlaceHolder="Please select a category"
         (ngModelChange)="hanldeOneSelect($event)"
         style="width: 200px;"
       >
@@ -182,7 +182,7 @@
       <nz-select
         [ngModel]="twoSelect"
         nzShowSearch
-        nzPlaceHolder="请选择二级分类"
+        nzPlaceHolder="Please select a secondary classification"
         (ngModelChange)="hanldeTwoSelect($event)"
         style="width: 200px; margin-left: 15px;"
       >
@@ -200,17 +200,17 @@
         (click)="toggleCreateModal()"
         style="margin-left: 20px;"
       >
-        添加分类
+        add category
       </button>
 
       <nz-table #basicTable [nzData]="threeTableData" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
-            <th>图标</th>
-            <th>分类名称</th>
-            <th>仅自己可见</th>
-            <th>创建时间</th>
-            <th>操作</th>
+            <th>icon</th>
+            <th>Category Name</th>
+            <th>Only visible to you</th>
+            <th>Creation time</th>
+            <th>operate</th>
           </tr>
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropThree($event)">
@@ -228,14 +228,14 @@
             </td>
             <td>{{ data.createdAt }}</td>
             <td>
-              <a (click)="handleEditBtn(data, idx)">编辑</a>
+              <a (click)="handleEditBtn(data, idx)">edit</a>
               <a
                 nz-popconfirm
-                nzPopconfirmTitle="这会删除分类下的所有数据，您确定要删除吗?"
+                nzPopconfirmTitle="This will delete all data under the category, are you sure you want to delete it?"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelThree(idx)"
               >
-                <a nz-button nzType="link" nzDanger>删除</a>
+                <a nz-button nzType="link" nzDanger>delete</a>
               </a>
             </td>
           </tr>
@@ -243,11 +243,11 @@
       </nz-table>
     </nz-tab>
 
-    <nz-tab nzTitle="管理网站">
+    <nz-tab nzTitle="Manage website">
       <nz-select
         [ngModel]="oneSelect"
         nzShowSearch
-        nzPlaceHolder="请选择一级分类"
+        nzPlaceHolder="Please select a category"
         (ngModelChange)="hanldeOneSelect($event)"
         style="width: 200px;"
       >
@@ -262,7 +262,7 @@
       <nz-select
         [ngModel]="twoSelect"
         nzShowSearch
-        nzPlaceHolder="请选择二级分类"
+        nzPlaceHolder="Please select a secondary classification"
         (ngModelChange)="hanldeTwoSelect($event)"
         style="width: 200px; margin-left: 15px;"
       >
@@ -277,7 +277,7 @@
       <nz-select
         [ngModel]="threeSelect"
         nzShowSearch
-        nzPlaceHolder="请选择三级分类"
+        nzPlaceHolder="Please select a three-level classification"
         (ngModelChange)="hanldeThreeSelect($event)"
         style="width: 200px; margin-left: 15px;"
       >
@@ -295,19 +295,19 @@
         (click)="toggleCreateWebModal()"
         style="margin-left: 20px;"
       >
-        添加网站
+        Add site
       </button>
 
       <nz-table #basicTable [nzData]="websiteTableData" [nzShowPagination]="false" style="margin-top: 15px;">
         <thead>
           <tr>
-            <th>图标</th>
-            <th>网站名称</th>
-            <th>网站分类</th>
-            <th>仅自己可见</th>
-            <th nzWidth="300px">网站描述</th>
-            <th>创建时间</th>
-            <th>操作</th>
+            <th>icon</th>
+            <th>Site name</th>
+            <th>Site Classification</th>
+            <th>Only visible to you</th>
+            <th nzWidth="300px">Site description</th>
+            <th>Creation time</th>
+            <th>operate</th>
           </tr>
         </thead>
         <tbody cdkDropList (cdkDropListDropped)="dropWebsite($event)">
@@ -335,14 +335,14 @@
             </td>
             <td nzWidth="200px">{{ data.createdAt }}</td>
             <td nzWidth="100px">
-              <a (click)="toggleCreateWebModal(); websiteDetail = data; editIdx = idx">编辑</a>
+              <a (click)="toggleCreateWebModal(); websiteDetail = data; editIdx = idx">edit</a>
               <a
                 nz-popconfirm
-                nzPopconfirmTitle="您确定要删除吗?"
+                nzPopconfirmTitle="Are you sure you want to delete it?"
                 nzPopconfirmPlacement="bottom"
                 (nzOnConfirm)="handleConfirmDelWebsite(idx)"
               >
-                <a nz-button nzType="link" nzDanger>删除</a>
+                <a nz-button nzType="link" nzDanger>delete</a>
               </a>
             </td>
           </tr>
@@ -362,7 +362,7 @@
 
 <nz-modal
   [(nzVisible)]="showCreateModal"
-  [nzTitle]="isEdit ? '编辑' : '新增'"
+  [nzTitle]="isEdit ? 'edit' : 'Add'"
   (nzOnCancel)="toggleCreateModal()"
   (nzOnOk)="handleOk()"
 >
@@ -370,20 +370,20 @@
     <form nz-form [formGroup]="validateForm">
       <nz-form-item>
         <nz-form-label [nzSpan]="6" nzRequired>分类名称</nz-form-label>
-        <nz-form-control [nzSpan]="18" nzErrorTip="请输入名称">
-          <input formControlName="title" nz-input placeholder="发现导航" />
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please enter a name">
+          <input formControlName="title" nz-input placeholder="Discovery Navigation" />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzRequired>仅自己可见</nz-form-label>
+        <nz-form-label [nzSpan]="6" nzRequired>Only visible to you</nz-form-label>
         <nz-form-control [nzSpan]="18">
           <nz-switch formControlName="ownVisible"></nz-switch>
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="6">图标</nz-form-label>
+        <nz-form-label [nzSpan]="6">icon</nz-form-label>
         <nz-form-control [nzSpan]="18">
           <nz-input-group [nzPrefix]="prefixIcon">
             <input formControlName="icon" nz-input />
