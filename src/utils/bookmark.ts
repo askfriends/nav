@@ -1,8 +1,8 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import { INavProps } from '../types'
-import { websiteList } from '../store'
+import {INavProps} from'../types'
+import {websiteList} from'../store'
 
 function getCreatedAt(node?: Element): string {
   if (!node) {
@@ -23,7 +23,7 @@ function getTitle(node: Element) {
 }
 
 function getUrl(node: Element) {
-  return node.getAttribute('href') || ''
+  return node.getAttribute('href') ||''
 }
 
 function getIcon(node: Element) {
@@ -34,12 +34,12 @@ const nowCratedAt = getCreatedAt()
 
 function findAllNoCate(roolDL: Element) {
   const data = []
-  for (let i = 0; i < roolDL.childElementCount; i++) {
+  for (let i = 0; i <roolDL.childElementCount; i++) {
     const iItem = roolDL.childNodes[i] as any
 
-    if (iItem && iItem.nodeName === 'DT') {
+    if (iItem && iItem.nodeName ==='DT') {
       let a = iItem.firstElementChild
-      if (!a || a.nodeName !== 'A') continue
+      if (!a || a.nodeName !=='A') continue
 
       const name = getTitle(a)
       const createdAt = getCreatedAt(a)
@@ -51,7 +51,7 @@ function findAllNoCate(roolDL: Element) {
         icon,
         url,
         urls: {},
-        desc: '',
+        desc:'',
         rate: 5
       })
     }
@@ -71,11 +71,11 @@ export function parseBookmark(htmlStr: string) {
   let kk = 0
   try {
     // One Level
-    for (let i = 0; i < roolDL.childElementCount; i++) {
+    for (let i = 0; i <roolDL.childElementCount; i++) {
       const iItem = roolDL.childNodes[i] as any
-      if (iItem && iItem.nodeName === 'DT') {
+      if (iItem && iItem.nodeName ==='DT') {
         const titleEl = iItem.querySelector('h3') as Element
-        // PERSONAL_TOOLBAR_FOLDER 收藏栏
+        // PERSONAL_TOOLBAR_FOLDER collection bar
         if (!titleEl) continue
 
         ii++
@@ -92,29 +92,29 @@ export function parseBookmark(htmlStr: string) {
         jj = 0
         const DL = iItem.querySelector('dl')
         const allNoCateData = findAllNoCate(DL)
-        if (allNoCateData.length > 0) {
+        if (allNoCateData.length> 0) {
           jj++
-          data[ii - 1].nav.push({
+          data[ii-1].nav.push({
             createdAt: nowCratedAt,
-            title: '未分类',
+            title:'Uncategorized',
             nav: [
               {
-                title: '未分类',
+                title:'Uncategorized',
                 nav: allNoCateData
               }
             ]
           })
         }
 
-        for (let j = 0; j < DL.childElementCount; j++) {
+        for (let j = 0; j <DL.childElementCount; j++) {
           const jItem = DL.childNodes[j]
-          if (jItem && jItem.nodeName === 'DT') {
+          if (jItem && jItem.nodeName ==='DT') {
             const titleEl = jItem.querySelector('h3')
             if (!titleEl) continue
             jj++
             const title = getTitle(titleEl)
             const createdAt = getCreatedAt(titleEl)
-            data[ii - 1].nav.push({
+            data[ii-1].nav.push({
               title,
               createdAt,
               icon: null,
@@ -125,23 +125,23 @@ export function parseBookmark(htmlStr: string) {
             kk = 0
             const DL3 = jItem.querySelector('dl')
             const allNoCateData = findAllNoCate(DL3)
-            if (allNoCateData.length > 0) {
+            if (allNoCateData.length> 0) {
               kk++
-              data[ii - 1].nav[jj - 1].nav.push({
+              data[ii-1].nav[jj-1].nav.push({
                 createdAt: nowCratedAt,
-                title: '未分类',
+                title:'Uncategorized',
                 nav: allNoCateData
               })
             }
-            for (let k = 0; k < DL3.childElementCount; k++) {
+            for (let k = 0; k <DL3.childElementCount; k++) {
               const kItem = DL3.childNodes[k]
-              if (kItem && kItem.nodeName === 'DT') {
+              if (kItem && kItem.nodeName ==='DT') {
                 const titleEl = kItem.querySelector('h3')
                 if (!titleEl) continue
                 kk++
                 const title = getTitle(titleEl)
                 const createdAt = getCreatedAt(titleEl)
-                data[ii - 1].nav[jj - 1].nav.push({
+                data[ii-1].nav[jj-1].nav.push({
                   title,
                   createdAt,
                   nav: [],
@@ -150,20 +150,20 @@ export function parseBookmark(htmlStr: string) {
 
                 // Website Level
                 const DL3 = kItem.querySelector('dl')
-                for (let b = 0; b < DL3.childElementCount; b++) {
+                for (let b = 0; b <DL3.childElementCount; b++) {
                   const wItem = DL3.childNodes[b]
-                  if (wItem && wItem.nodeName === 'DT') {
+                  if (wItem && wItem.nodeName ==='DT') {
                     const titleEl = wItem.querySelector('a')
                     if (!titleEl) continue
                     const title = getTitle(titleEl)
                     const createdAt = getCreatedAt(titleEl)
                     const icon = getIcon(titleEl)
                     const url = getUrl(titleEl)
-                    data[ii - 1].nav[jj - 1].nav[kk - 1].nav.push({
+                    data[ii-1].nav[jj-1].nav[kk-1].nav.push({
                       name: title,
                       createdAt,
                       url,
-                      desc: '',
+                      desc:'',
                       urls: {},
                       rate: 5,
                       top: false,
@@ -172,24 +172,24 @@ export function parseBookmark(htmlStr: string) {
                   }
                 }
               }
-            }
+              }
           }
         }
       }
     }
 
     const allNoCateData = findAllNoCate(roolDL)
-    if (allNoCateData.length > 0) {
+    if (allNoCateData.length> 0) {
       data.push({
-        title: '未分类',
+        title:'Uncategorized',
         createdAt: nowCratedAt,
         nav: [
           {
             createdAt: nowCratedAt,
-            title: '未分类',
+            title:'Uncategorized',
             nav: [
               {
-                title: '未分类',
+                title:'Uncategorized',
                 nav: allNoCateData
               }
             ]
@@ -202,9 +202,9 @@ export function parseBookmark(htmlStr: string) {
     return error
   }
 
-  // 增量导入
+  // Incremental import
   function r(data: any[], list: any[]) {
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i <data.length; i++) {
       const item = data[i] as any
       const title = item.title || item.name
       const idx = list.findIndex(item => (item.title || item.name) === title)
