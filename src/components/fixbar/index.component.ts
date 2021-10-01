@@ -1,22 +1,22 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import config from '../../../nav.config'
-import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core'
-import { isDark as isDarkFn, randomBgImg, queryString } from '../../utils'
-import { NzModalService } from 'ng-zorro-antd/modal'
-import { NzMessageService } from 'ng-zorro-antd/message'
-import { NzNotificationService } from 'ng-zorro-antd/notification'
-import { getToken } from '../../utils/user'
-import { updateFileContent } from '../../services'
-import { websiteList } from '../../store'
-import { DB_PATH, KEY_MAP, VERSION, STORAGE_KEY_MAP } from '../../constants'
-import { Router, ActivatedRoute } from '@angular/router'
-import { setAnnotate } from '../../utils/ripple'
+import config from'../../../nav.config'
+import {Component, Output, EventEmitter, Input, ChangeDetectionStrategy} from'@angular/core'
+import {isDark as isDarkFn, randomBgImg, queryString} from'../../utils'
+import {NzModalService} from'ng-zorro-antd/modal'
+import {NzMessageService} from'ng-zorro-antd/message'
+import {NzNotificationService} from'ng-zorro-antd/notification'
+import {getToken} from'../../utils/user'
+import {updateFileContent} from'../../services'
+import {websiteList} from'../../store'
+import {DB_PATH, KEY_MAP, VERSION, STORAGE_KEY_MAP} from'../../constants'
+import {Router, ActivatedRoute} from'@angular/router'
+import {setAnnotate} from'../../utils/ripple'
 
 @Component({
-  selector: 'app-fixbar',
-  templateUrl: './index.component.html',
+  selector:'app-fixbar',
+  templateUrl:'./index.component.html',
   styleUrls: ['./index.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -33,24 +33,24 @@ export class FixbarComponent {
   isLogin = !!getToken()
   themeList = [
     {
-      name: '切换到 Light',
-      url: '/light'
+      name:'Switch to Light',
+      url:'/light'
     },
     {
-      name: '切换到 Sim',
-      url: '/sim'
+      name:'Switch to Sim',
+      url:'/sim'
     },
     {
-      name: '切换到 Side',
-      url: '/side'
+      name:'Switch to Side',
+      url:'/side'
     },
     {
-      name: '切换到 Shortcut',
-      url: '/shortcut'
+      name:'Switch to Shortcut',
+      url:'/shortcut'
     },
     {
-      name: '切换到 App',
-      url: '/app'
+      name:'Switch to App',
+      url:'/app'
     }
   ]
 
@@ -78,14 +78,14 @@ export class FixbarComponent {
 
     this.modal.info({
       nzWidth: 500,
-      nzTitle: '以下信息只有您能查看，请放心！',
-      nzOkText: '知道了',
+      nzTitle:'The following information can only be viewed by you, please rest assured! ',
+      nzOkText:'Got it',
       nzContent: `
         <p>Token: ${getToken()}</p>
-        <p>部署分支: ${config.branch}</p>
-        <p>上次构建时间: ${date || '未知'}</p>
-        <p>当前版本: <img src="https://img.shields.io/badge/release-v${VERSION}-red.svg?longCache=true&style=flat-square"></p>
-        <p>最新版本: <img src="https://img.shields.io/github/v/release/xjh22222228/nav" /></p>
+        <p>Deployment branch: ${config.branch}</p>
+        <p>Last build time: ${date ||'unknown'}</p>
+        <p>Current version: <img src="https://img.shields.io/badge/release-v${VERSION}-red.svg?longCache=true&style=flat-square"></p>
+        <p>Latest version: <img src="https://img.shields.io/github/v/release/xjh22222228/nav" /></p>
       `,
     });
   }
@@ -111,7 +111,7 @@ export class FixbarComponent {
 
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior:'smooth'
     })
   }
 
@@ -132,7 +132,7 @@ export class FixbarComponent {
     if (this.isDark) {
       this.removeBackground()
     } else {
-      const { data } = this.activatedRoute.snapshot
+      const {data} = this.activatedRoute.snapshot
       data?.renderLinear && randomBgImg()
     }
   }
@@ -148,29 +148,29 @@ export class FixbarComponent {
 
   handleSync() {
     if (this.syncLoading) {
-      this.message.warning('请不要频繁操作')
+      this.message.warning('Please do not operate frequently')
       return
     }
 
     this.modal.info({
-      nzTitle: '同步数据到远端',
-      nzOkText: '确定同步',
-      nzContent: '确定将所有数据同步到远端吗？',
+      nzTitle:'Sync data to remote',
+      nzOkText:'OK to sync',
+      nzContent:'Are you sure to synchronize all data to the remote? ',
       nzOnOk: () => {
         this.syncLoading = true;
 
         updateFileContent({
-          message: 'update db',
+          message:'update db',
           content: JSON.stringify(this.websiteList),
           path: DB_PATH
         })
         .then(() => {
-          this.message.success('同步成功, 大约需要5分钟构建时间')
+          this.message.success('Synchronization is successful, it takes about 5 minutes to build time')
         })
         .catch(res => {
           this.notification.error(
-            `错误: ${res?.response?.status ?? 1401}`,
-            '同步失败, 请重试'
+            `Error: ${res?.response?.status ?? 1401}`,
+            'Sync failed, please try again'
           )
         })
         .finally(() => {
