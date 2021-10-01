@@ -72,7 +72,7 @@ export class CardComponent implements OnInit {
       this.dataSource[k] = payload[k]
     }
 
-    this.message.success('修改成功!')
+    this.message.success('Successfully modified!')
     this.toggleModal()
   }
 
