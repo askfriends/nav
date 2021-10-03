@@ -17,10 +17,10 @@ const c: IConfig = {
   showGithub: true,
 
   // Your website address is good for SEO
-  homeUrl: 'https://nav3.cn',
+  homeUrl: 'https://github.com/askfriends/nav',
 
   // Site title
-  title: 'Discovery Navigation-Featured and useful navigation sites',
+  title: 'Bookmarks For Katper',
 
   // Site description
   description: 'Discovery Navigation-Featured and useful navigation sites',
@@ -33,7 +33,7 @@ const c: IConfig = {
 
   // The content at the bottom of the website, copyright information, record number, can be HTML
   footerContent: `
-    <div style="font-weight: bold;">Totally included\${total}Sites</div>
+    <div style="font-weight: bold;">Totally included \${total} Sites</div>
     <div>Copyright © 2018-2021 nav3.cn, All Rights Reserved</div>
   `,
 
