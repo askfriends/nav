@@ -40,7 +40,7 @@
     <app-logo [src]="dataSource.icon" [name]="dataSource.name"></app-logo>
   </ng-template>
   <ng-template #actionSetting>
-    <div nz-tooltip [nzTooltipTitle]="copyUrlDone ? 'Copy successfully' : 'copy Link'">
+    <div nz-tooltip [nzTooltipTitle]="copyUrlDone ? $t('_copySuccess') : $t('_copyUrl')">
       <i
         nz-icon
         [nzType]="copyUrlDone ? 'check' : 'copy'"
@@ -52,7 +52,7 @@
     </div>
   </ng-template>
   <ng-template #actionEdit>
-    <div nz-tooltip [nzTooltipTitle]="copyPathDone ? 'Copy successfully' : 'Share site'">
+    <div nz-tooltip [nzTooltipTitle]="copyPathDone ? $t('_copySuccess') : $t('_shareWeb')">
       <i
         nz-icon
         [nzType]="copyPathDone ? 'check' : 'share-alt'"
@@ -68,16 +68,16 @@
 
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu nzSelectable>
-        <li nz-menu-item (click)="toggleModal(); detail = dataSource">edit</li>
+        <li nz-menu-item (click)="toggleModal(); detail = dataSource">{{ $t('_edit') }}</li>
         <a
           nz-popconfirm
           nzPopconfirmPlacement="rightTop"
           nzOkType="danger"
-          nzPopconfirmTitle="Are you sure you want to delete it?"
+          [nzPopconfirmTitle]="$t('_confirmDel')"
           nzPopconfirmPlacement="bottom"
           (nzOnConfirm)="confirmDel($event)"
         >
-          <li nz-menu-item nzDanger>delete</li>
+          <li nz-menu-item nzDanger>{{ $t('_del') }}</li>
         </a>
       </ul>
     </nz-dropdown-menu>

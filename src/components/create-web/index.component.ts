@@ -1,21 +1,22 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import {Component, OnInit, Input, Output, EventEmitter} from'@angular/core'
-import {getLogoUrl, getTextContent} from'../../utils'
-import {FormBuilder, FormGroup, Validators} from'@angular/forms'
-import {ITagProp, INavFourProp} from'../../types'
-import {NzMessageService} from'ng-zorro-antd/message'
-import {NzNotificationService} from'ng-zorro-antd/notification'
-import * as __tag from'../../../data/tag.json'
-import {createFile} from'../../services'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { getLogoUrl, getTextContent } from '../../utils'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { ITagProp, INavFourProp } from '../../types'
+import { NzMessageService } from 'ng-zorro-antd/message'
+import { NzNotificationService } from 'ng-zorro-antd/notification'
+import * as __tag from '../../../data/tag.json'
+import { createFile } from '../../services'
+import { $t } from 'src/locale'
 
 const tagMap: ITagProp = (__tag as any).default
 const tagKeys = Object.keys(tagMap)
 
 @Component({
-  selector:'app-create-web',
-  templateUrl:'./index.component.html',
+  selector: 'app-create-web',
+  templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
 })
 export class CreateWebComponent implements OnInit {
@@ -24,8 +25,9 @@ export class CreateWebComponent implements OnInit {
   @Output() onCancel = new EventEmitter()
   @Output() onOk = new EventEmitter()
 
+  $t = $t
   validateForm!: FormGroup;
-  iconUrl =''
+  iconUrl = ''
   urlArr = []
   tags = tagKeys
   tagMap = tagMap
@@ -56,7 +58,7 @@ export class CreateWebComponent implements OnInit {
   }
 
   ngOnChanges() {
-    // echo form
+    // 回显表单
     setTimeout(() => {
       if (!this.visible) {
         this.validateForm.reset()
@@ -66,13 +68,13 @@ export class CreateWebComponent implements OnInit {
       if (this.detail && this.visible) {
         this.validateForm.get('title')!.setValue(getTextContent(detail.name))
         this.validateForm.get('desc')!.setValue(getTextContent(detail.desc))
-        this.validateForm.get('icon')!.setValue(detail.icon ||'')
-        this.validateForm.get('url')!.setValue(detail.url ||'')
+        this.validateForm.get('icon')!.setValue(detail.icon || '')
+        this.validateForm.get('url')!.setValue(detail.url || '')
         this.validateForm.get('top')!.setValue(detail.top ?? false)
         this.validateForm.get('ownVisible')!.setValue(detail.ownVisible ?? false)
         this.validateForm.get('rate')!.setValue(detail.rate ?? 5)
   
-        if (typeof detail.urls ==='object') {
+        if (typeof detail.urls === 'object') {
           let i = 0
           for (let k in detail.urls) {
             this.urlArr.push(null)
@@ -115,7 +117,7 @@ export class CreateWebComponent implements OnInit {
     let file = null
 
     if (items.length) {
-      for (let i = 0; i <items.length; i++) {
+      for (let i = 0; i < items.length; i++) {
         if (items[i].type.startsWith('image')) {
           file = items[i].getAsFile()
           break;
@@ -139,18 +141,18 @@ export class CreateWebComponent implements OnInit {
       const path = `nav-${Date.now()}-${file.name}`
 
       createFile({
-        branch:'image',
-        message:'create image',
+        branch: 'image',
+        message: 'create image',
         content: url,
         isEncode: false,
         path
       }).then(() => {
         that.validateForm.get('icon')!.setValue(path)
-        that.message.success('Upload successful')
+        that.message.success($t('_uploadSuccess'))
       }).catch(res => {
         that.notification.error(
-          `Error: ${res?.response?.status ?? 401}`,
-          'Upload failed, please try again! '
+          `${$t('_error')}: ${res?.response?.status ?? 401}`,
+          $t('_uploadFail')
         )
       }).finally(() => {
         that.uploading = false
@@ -159,12 +161,12 @@ export class CreateWebComponent implements OnInit {
   }
 
   onChangeFile(e) {
-    const {files} = e.target
+    const { files } = e.target
     if (files.length <= 0) return;
     const file = files[0]
 
     if (!file.type.startsWith('image')) {
-      return this.message.error('Please don't upload illegal pictures')
+      return this.message.error($t('_notUpload'))
     }
     this.handleUploadImage(file)
   }
@@ -191,40 +193,40 @@ export class CreateWebComponent implements OnInit {
       desc,
       url0,
       url1,
-       url2,
-       tagVal0,
-       tagVal1,
-       tagVal2
-     } = this.validateForm.value
+      url2,
+      tagVal0,
+      tagVal1,
+      tagVal2
+    } = this.validateForm.value
 
-     if (!title || !url) return
+    if (!title || !url) return
 
-     title = title.trim()
+    title = title.trim()
 
-     if (tagVal0 && url0) {
-       urls[tagVal0] = url0
-     }
-     if (tagVal1 && url1) {
-       urls[tagVal1] = url1
-     }
-     if (tagVal2 && url2) {
-       urls[tagVal2] = url2
-     }
+    if (tagVal0 && url0) {
+      urls[tagVal0] = url0
+    }
+    if (tagVal1 && url1) {
+      urls[tagVal1] = url1
+    }
+    if (tagVal2 && url2) {
+      urls[tagVal2] = url2
+    }
 
-     const payload = {
-       name: title,
-       createdAt: (this.detail as any)?.createdAt ?? createdAt,
-       rate: rate ?? 0,
-       desc: desc ||'',
-       top: top ?? false,
-       ownVisible: ownVisible ?? false,
-       icon,
-       url,
-       urls
-     }
+    const payload = {
+      name: title,
+      createdAt: (this.detail as any)?.createdAt ?? createdAt,
+      rate: rate ?? 0,
+      desc: desc || '',
+      top: top ?? false,
+      ownVisible: ownVisible ?? false,
+      icon,
+      url,
+      urls
+    }
 
-     this.iconUrl =''
-     this.urlArr = []
-     this.onOk.emit(payload)
-   }
+    this.iconUrl = ''
+    this.urlArr = []
+    this.onOk.emit(payload)
+  }
 }

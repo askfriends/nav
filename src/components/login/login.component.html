@@ -1,15 +1,15 @@
 <nz-modal
-   [(nzVisible)]="visible"
-   nzTitle="Please authorize login"
-   [nzOkLoading]="submiting"
-   (nzOnCancel)="hanldeCancel()"
-   (nzOnOk)="login()"
+  [(nzVisible)]="visible"
+  [nzTitle]="$t('_authLogin')"
+  [nzOkLoading]="submiting"
+  (nzOnCancel)="hanldeCancel()"
+  (nzOnOk)="login()"
 >
-   <ng-container *nzModalContent>
-     <p>Please enter your TOKEN below for login verification</p>
-     <input nz-input placeholder="Please enter TOKEN" [(ngModel)]="token" maxlength="100" autofocus />
-     <p style="margin-top: 15px;">
-       I don't know how to get Token? <a href="https://github.com/xjh22222228/nav#%E9%83%A8%E7%BD%B2" target="_blank">Please read our guide first</a>
-     </p>
-   </ng-container>
+  <ng-container *nzModalContent>
+    <p>{{ $t('_inputTokenMsg') }}</p>
+    <input nz-input [placeholder]="$t('_inputToken')" [(ngModel)]="token" maxlength="100" autofocus />
+    <p style="margin-top: 15px;">
+      {{ $t('_getToken') }}<a href="https://github.com/xjh22222228/nav#%E9%83%A8%E7%BD%B2" target="_blank"> {{ $t('_readDoc') }}</a>
+    </p>
+  </ng-container>
 </nz-modal>

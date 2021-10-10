@@ -1,22 +1,23 @@
 // Copyright @ 2018-2021 xiejiahe. All rights reserved. MIT license.
 // See https://github.com/xjh22222228/nav
 
-import config from'../../../nav.config'
-import {Component, Output, EventEmitter, Input, ChangeDetectionStrategy} from'@angular/core'
-import {isDark as isDarkFn, randomBgImg, queryString} from'../../utils'
-import {NzModalService} from'ng-zorro-antd/modal'
-import {NzMessageService} from'ng-zorro-antd/message'
-import {NzNotificationService} from'ng-zorro-antd/notification'
-import {getToken} from'../../utils/user'
-import {updateFileContent} from'../../services'
-import {websiteList} from'../../store'
-import {DB_PATH, KEY_MAP, VERSION, STORAGE_KEY_MAP} from'../../constants'
-import {Router, ActivatedRoute} from'@angular/router'
-import {setAnnotate} from'../../utils/ripple'
+import config from '../../../nav.config'
+import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core'
+import { isDark as isDarkFn, randomBgImg, queryString } from '../../utils'
+import { NzModalService } from 'ng-zorro-antd/modal'
+import { NzMessageService } from 'ng-zorro-antd/message'
+import { NzNotificationService } from 'ng-zorro-antd/notification'
+import { getToken } from '../../utils/user'
+import { updateFileContent } from '../../services'
+import { websiteList } from '../../store'
+import { DB_PATH, VERSION, STORAGE_KEY_MAP } from '../../constants'
+import { Router, ActivatedRoute } from '@angular/router'
+import { setAnnotate } from '../../utils/ripple'
+import { $t, getLocale } from 'src/locale'
 
 @Component({
-  selector:'app-fixbar',
-  templateUrl:'./index.component.html',
+  selector: 'app-fixbar',
+  templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -26,6 +27,8 @@ export class FixbarComponent {
   @Input() selector: string
   @Output() onCollapse = new EventEmitter()
 
+  $t = $t
+  language = getLocale()
   websiteList = websiteList
   isDark: boolean = isDarkFn()
   showCreateModal = false
@@ -33,24 +36,24 @@ export class FixbarComponent {
   isLogin = !!getToken()
   themeList = [
     {
-      name:'Switch to Light',
-      url:'/light'
+      name: $t('_switchTo') + ' Light',
+      url: '/light'
     },
     {
-      name:'Switch to Sim',
-      url:'/sim'
+      name: $t('_switchTo') + ' Sim',
+      url: '/sim'
     },
     {
-      name:'Switch to Side',
-      url:'/side'
+      name: $t('_switchTo') + ' Side',
+      url: '/side'
     },
     {
-      name:'Switch to Shortcut',
-      url:'/shortcut'
+      name: $t('_switchTo') + ' Shortcut',
+      url: '/shortcut'
     },
     {
-      name:'Switch to App',
-      url:'/app'
+      name: $t('_switchTo') + ' App',
+      url: '/app'
     }
   ]
 
@@ -78,14 +81,14 @@ export class FixbarComponent {
 
     this.modal.info({
       nzWidth: 500,
-      nzTitle:'The following information can only be viewed by you, please rest assured! ',
-      nzOkText:'Got it',
+      nzTitle: $t('_infoTip'),
+      nzOkText: $t('_know'),
       nzContent: `
         <p>Token: ${getToken()}</p>
-        <p>Deployment branch: ${config.branch}</p>
-        <p>Last build time: ${date ||'unknown'}</p>
-        <p>Current version: <img src="https://img.shields.io/badge/release-v${VERSION}-red.svg?longCache=true&style=flat-square"></p>
-        <p>Latest version: <img src="https://img.shields.io/github/v/release/xjh22222228/nav" /></p>
+        <p>${$t('_devBranch')}: ${config.branch}</p>
+        <p>${$t('_prevDevTime')}: ${date || $t('_unknow')}</p>
+        <p>${$t('_curVer')}: <img src="https://img.shields.io/badge/release-v${VERSION}-red.svg?longCache=true&style=flat-square"></p>
+        <p>${$t('_newVer')}: <img src="https://img.shields.io/github/v/release/xjh22222228/nav" /></p>
       `,
     });
   }
@@ -111,7 +114,7 @@ export class FixbarComponent {
 
     window.scrollTo({
       top: 0,
-      behavior:'smooth'
+      behavior: 'smooth'
     })
   }
 
@@ -132,7 +135,7 @@ export class FixbarComponent {
     if (this.isDark) {
       this.removeBackground()
     } else {
-      const {data} = this.activatedRoute.snapshot
+      const { data } = this.activatedRoute.snapshot
       data?.renderLinear && randomBgImg()
     }
   }
@@ -148,29 +151,29 @@ export class FixbarComponent {
 
   handleSync() {
     if (this.syncLoading) {
-      this.message.warning('Please do not operate frequently')
+      this.message.warning($t('_repeatOper'))
       return
     }
 
     this.modal.info({
-      nzTitle:'Sync data to remote',
-      nzOkText:'OK to sync',
-      nzContent:'Are you sure to synchronize all data to the remote? ',
+      nzTitle: $t('_syncDataOut'),
+      nzOkText: $t('_confirmSync'),
+      nzContent: $t('_confirmSyncTip'),
       nzOnOk: () => {
         this.syncLoading = true;
 
         updateFileContent({
-          message:'update db',
+          message: 'update db',
           content: JSON.stringify(this.websiteList),
           path: DB_PATH
         })
         .then(() => {
-          this.message.success('Synchronization is successful, it takes about 5 minutes to build time')
+          this.message.success($t('_syncSuccessTip'))
         })
         .catch(res => {
           this.notification.error(
-            `Error: ${res?.response?.status ?? 1401}`,
-            'Sync failed, please try again'
+            `${$t('_error')}: ${res?.response?.status ?? 1401}`,
+            $t('_syncFailTip')
           )
         })
         .finally(() => {
@@ -178,5 +181,11 @@ export class FixbarComponent {
         })
       }
     });
+  }
+
+  toggleLocale() {
+    const l = this.language === 'en' ? 'zh-CN' : 'en'
+    window.localStorage.setItem(STORAGE_KEY_MAP.language, l)
+    window.location.reload()
   }
 }

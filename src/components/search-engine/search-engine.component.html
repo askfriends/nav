@@ -1,4 +1,4 @@
-<div class="search-engine" *ngIf="searchEngineList && searchEngineList.length> 0">
+<div class="search-engine" *ngIf="searchEngineList && searchEngineList.length > 0">
   <div
     class="input-wrapper dark-bg dark-border-color"
     [class.removeAddon]="currentEngine.url"
@@ -12,7 +12,7 @@
       <input
         type="text"
         nz-input
-        [placeholder]="currentEngine.placeholder ||''"
+        [placeholder]="currentEngine.placeholder || ''"
         [(ngModel)]="keyword"
         autofocus
         id="search-engine-input"
@@ -24,7 +24,7 @@
       <div
         class="left-icon"
         (click)="toggleEngine($event)"
-        [ngStyle]="{'background-image':'url(' + currentEngine.icon +')' }"
+        [ngStyle]="{ 'background-image': 'url(' + currentEngine.icon + ')' }"
       >
       </div>
     </ng-template>
@@ -33,11 +33,11 @@
     </ng-template>
     <ng-template #addOnBeforeTemplate>
       <nz-select [(ngModel)]="searchTypeValue" *ngIf="!currentEngine.url">
-        <nz-option nzLabel="default" [nzValue]="SearchType.All"></nz-option>
-        <nz-option nzLabel="Title" [nzValue]="SearchType.Title"></nz-option>
-        <nz-option nzLabel="Description" [nzValue]="SearchType.Desc"></nz-option>
-        <nz-option nzLabel="link" [nzValue]="SearchType.Url"></nz-option>
-        <nz-option nzLabel="Current" [nzValue]="SearchType.Current"></nz-option>
+        <nz-option [nzLabel]="$t('_default')" [nzValue]="SearchType.All"></nz-option>
+        <nz-option [nzLabel]="$t('_title')" [nzValue]="SearchType.Title"></nz-option>
+        <nz-option [nzLabel]="$t('_desc')" [nzValue]="SearchType.Desc"></nz-option>
+        <nz-option [nzLabel]="$t('_link')" [nzValue]="SearchType.Url"></nz-option>
+        <nz-option [nzLabel]="$t('_current')" [nzValue]="SearchType.Current"></nz-option>
       </nz-select>
     </ng-template>
   </div>

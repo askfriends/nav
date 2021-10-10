@@ -8,13 +8,13 @@
   <p align="center">A purely static, powerful navigation website that supports SEO and online editing, I hope you will like it</p>
   <p align="center">Built-in collection of up to 800+ high-quality websites to help you work, study and live</p>
   <p align="center">
+    <a href="README_zh-CN.md">
+      <img src="https://img.shields.io/badge/lang-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg?longCache=true&style=flat-square">
+    </a>
     <img src="https://img.shields.io/github/v/release/xjh22222228/nav" />
     <a href="https://github.com/xjh22222228/nav/stargazers"><img src="https://img.shields.io/github/stars/xjh22222228/nav" alt="Stars"/></a>
     <img alt="Angular" src="https://img.shields.io/static/v1.svg?label=&message=Angular11&style=flat-square&color=C82B38">
     <img src="https://img.shields.io/github/license/xjh22222228/nav" />
-    <a href="https://hits.dwyl.com/xjh22222228/nav">
-      <img src="https://hits.dwyl.com/xjh22222228/nav.svg" />
-    </a>
   </p>
 </p>
 
@@ -134,25 +134,25 @@ Click the `Watch` button in the upper right corner to track the version upgrade 
 
 ## Development and construction
 ``` bash
-# 下载
+# Download
 git clone --depth=1 https://github.com/xjh22222228/nav.git
 
 cd nav
 
-# 安装依赖
+# Installation dependencies
 yarn
 
-# 启动
+# Start
 yarn start
 
-# 打包
+# Build
 yarn build
 ```
 
 
 
 ## contribute
-[点击这里](https://github.com/xjh22222228/nav/tree/master/data)
+[Click Here](https://github.com/xjh22222228/nav/tree/master/data)
 
 Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), men.
 
@@ -174,23 +174,5 @@ Thank you for your [contribution](https://github.com/xjh22222228/nav/issues), me
 
 
 
-## 建议
-如果有任何功能上的建议可通过 [issue](https://github.com/xjh22222228/nav/issues) 发起, Thank you.
-
-
-
-## 支持
-项目成立于 2018 年到至今一直坚持维护和开源, 经过N次的迭代与优化, 如果项目能帮到您是我的荣幸。
-
-您可以请作者喝杯咖啡，继续战斗下去（请备注Github名字）~
-
-<img src="https://cdn.jsdelivr.net/gh/xjh22222228/public@gh-pages/img/32.png" width="600">
-
-感谢您的认可：
-| 姓名    | 支持金额              |
-| --------------------------------------- |----------- |
-| [aiyou9](https://github.com/aiyou9)     | ￥50.00     |
-| [lastares](https://github.com/lastares)       | ￥25.00     |
-| [MrJxySteven](https://github.com/MrJxySteven) | ￥20.00     |
-| 路人甲     | ￥50.00     |
-
+## Suggest
+If you have any functional suggestions, you can initiate an [issue](https://github.com/xjh22222228/nav/issues), Thank you.

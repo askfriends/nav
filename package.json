@@ -7,9 +7,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/askfriends/nav"
+    "url": "git+https://github.com/xjh22222228/nav.git"
   },
-  "homepage": "https://github.com/askfriends/nav",
+  "homepage": "https://github.com/xjh22222228/nav",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port=7000",
