@@ -33,15 +33,15 @@ const c: IConfig = {
 
   // Site title
   // 网站标题
-  title: '发现导航 - 精选实用导航网站',
+  title: 'Bookmarks - Best Websites',
 
   // Site description
   // 网站描述
-  description: '发现导航 - 精选实用导航网站',
+  description: 'My collection of useful websites around the globe',
 
   // Site keywords
   // 网站关键字
-  keywords: '导航,前端资源,社区站点,设计师,实用工具,学习资源,运营,网络安全,node.js',
+  keywords: 'bookmarks, best websites, best github repos, best telegram bots, gdrive tools',
 
   // Default theme: Light | Sim | Side | App | Shortcut
   // 默认主题: Light | Sim | Side | App | Shortcut
@@ -50,8 +50,8 @@ const c: IConfig = {
   // The content at the bottom of the website, copyright information, record number, can be HTML
   // 网站底部内容, 版权信息、备案号, 可以是 HTML
   footerContent: `
-    <div style="font-weight: bold;">共收录\${total}个网站</div>
-    <div>Copyright © 2018-2021 nav3.cn, All Rights Reserved</div>
+    <div style="font-weight: bold;">Total \${total} websites added!</div>
+    <div>Copyright © 2018-2021, All Rights Reserved</div>
   `,
 
   // Alibaba Vector Gallery https://www.iconfont.cn/
@@ -77,7 +77,7 @@ const c: IConfig = {
     posterImageUrls: [
       'https://raw.sevencdn.com/xjh22222228/nav/image/sim-wallpaper.jpg'
     ],
-    description: '这里收录多达 <b>${total}</b> 个优质网站， 助您工作、学习和生活'
+    description: 'Up to <b>${total}</b> A quality website to help you work, study and live'
   }
 }
 
